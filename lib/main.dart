@@ -1,6 +1,7 @@
 import 'package:bpl/pages/fixtures.dart';
 import 'package:bpl/pages/more.dart';
 import 'package:bpl/pages/stats.dart';
+import 'package:bpl/pages/table.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,9 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Baraton Premier Leagues',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
       home: const MainPage(),
     );
@@ -34,7 +35,7 @@ class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
   final tabs = [
     Fixtures(),
-    Table(),
+    BPLTable(),
     Stats(),
     More(),
   ];

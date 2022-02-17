@@ -18,18 +18,21 @@ class _FixturesState extends State<Fixtures> {
           itemCount: 5,
           itemBuilder: (BuildContext context, int index) {
             if (index == 0) {
-              return Row(
-                children: [
-                  SizedBox(
-                      height: 80,
-                      child: Image.asset('assets/baraton_logo.png')),
-                  Column(
-                    children: [
-                      Text('Premier', style: heading),
-                      Text('League', style: heading),
-                    ],
-                  ),
-                ],
+              return Container(
+                color: Colors.yellow,
+                child: Row(
+                  children: [
+                    SizedBox(
+                        height: 80,
+                        child: Image.asset('assets/baraton_logo.png')),
+                    Column(
+                      children: [
+                        Text('Premier', style: heading),
+                        Text('League', style: heading),
+                      ],
+                    ),
+                  ],
+                ),
               );
             }
             if (index == 1) {

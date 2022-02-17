@@ -11,3 +11,12 @@ TextStyle heading = GoogleFonts.poppins(
   fontSize: 20,
   fontWeight: FontWeight.bold,
 );
+TextStyle rowHeading = const TextStyle(
+  color: Colors.green,
+  fontWeight: FontWeight.bold,
+  
+);
+TextStyle rowBody =const TextStyle(
+
+);
+TextAlign center=TextAlign.center;
