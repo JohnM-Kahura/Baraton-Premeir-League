@@ -1,5 +1,6 @@
 import 'package:bpl/config/global_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BPLTable extends StatefulWidget {
   const BPLTable({Key? key}) : super(key: key);
@@ -9,21 +10,24 @@ class BPLTable extends StatefulWidget {
 }
 
 class _BPLTableState extends State<BPLTable> {
-  bool showPreviousTables= false;
+  bool showPreviousTables = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(title:const Center(child: Text('League Table')), elevation: 0, actions: [
-        IconButton(
-          onPressed: () {
-            setState(() {
-              showPreviousTables=!showPreviousTables;
-            });
-          },
-          icon: const Icon(Icons.event),
-        ),
-      ]),
+      appBar: AppBar(
+          title: const Center(child: Text('League Table')),
+          elevation: 0,
+          actions: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  showPreviousTables = !showPreviousTables;
+                });
+              },
+              icon: const Icon(Icons.event),
+            ),
+          ]),
       body: Column(
         children: [
           Padding(
@@ -62,23 +66,61 @@ class _BPLTableState extends State<BPLTable> {
                   Text('GD', style: rowHeading, textAlign: center),
                   Text('Pts', style: rowHeading, textAlign: center),
                 ]),
-                entry('1.','Gongagonga','6','5', '1','0','8','16'),
-                entry('2.','Zambarani','6','4', '2','0','6','14'),
-                entry('3.','Black Eagles','6','5', '1','0','8','13'),
-                entry('4.','Nurses','6','5', '1','0','4','13'),
-                entry('5.','Clippers','6','5', '1','0','11','12'),
-                entry('6.','Sigalagala','6','5', '1','0','8','12'),
-                entry('7.','Veterans','6','5', '1','0','-6','4'),
-                entry('8.','Pirates','6','5', '1','0','-6','4'),
-                entry('9.','Snipers','6','5', '1','0','-7','4  '),
-                entry('10.','Rangers','6','5', '1','0','-6','3'),
-                entry('11.','Rovers','6','5', '1','0','-9','3'),
-                entry('12.','Yanga','6','5', '1','0','-12','3'),
+                entry('1.', 'Gongagonga', '6', '5', '1', '0', '8', '16'),
+                entry('2.', 'Zambarani', '6', '4', '2', '0', '6', '14'),
+                entry('3.', 'Black Eagles', '6', '5', '1', '0', '8', '13'),
+                entry('4.', 'Nurses', '6', '5', '1', '0', '4', '13'),
+                entry('5.', 'Clippers', '6', '5', '1', '0', '11', '12'),
+                entry('6.', 'Sigalagala', '6', '5', '1', '0', '8', '12'),
+                entry('7.', 'Veterans', '6', '5', '1', '0', '-6', '4'),
+                entry('8.', 'Pirates', '6', '5', '1', '0', '-6', '4'),
+                entry('9.', 'Snipers', '6', '5', '1', '0', '-7', '4  '),
+                entry('10.', 'Rangers', '6', '5', '1', '0', '-6', '3'),
+                entry('11.', 'Rovers', '6', '5', '1', '0', '-9', '3'),
+                entry('12.', 'Yanga', '6', '5', '1', '0', '-12', '3'),
               ],
             ),
           ),
-          Container(margin:const EdgeInsets.all(10),child: Row(children: [Text('Share table with',style: heading,),const Icon(Icons.share)],))
-,        TextButton(onPressed: (){}, child:Text(' WhatsApp'))
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                'Share Table with:',
+                style: heading,
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              
+              
+              IconButton(
+                onPressed: () {},
+                icon: const FaIcon(
+                  FontAwesomeIcons.whatsapp,
+                  size: 30,
+                  color: Colors.green,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const FaIcon(
+                  FontAwesomeIcons.twitter,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const FaIcon(
+                  FontAwesomeIcons.facebook,
+                  size: 30,
+                  color: Colors.blueAccent,
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
@@ -88,13 +130,40 @@ class _BPLTableState extends State<BPLTable> {
 TableRow entry(String pos, String team, String gamesPlayed, String wins,
     String draws, String losses, String goalDiff, String points) {
   return TableRow(children: [
-    Text(pos,textAlign: center,),
-    Text(team,textAlign: TextAlign.justify,),
-    Text(gamesPlayed,textAlign: center,),
-    Text(wins,textAlign: center,),
-    Text(draws,textAlign: center,),
-    Text(losses,textAlign: center,),
-    Text(goalDiff,textAlign: center,),
-    Text(points,textAlign: center,),
+    Text(
+      pos,
+      textAlign: center,
+    ),
+    Padding(
+      padding: const EdgeInsets.only(top:5.0,bottom: 5,left: 5),
+      child: Text(
+        team,
+        textAlign: TextAlign.justify,
+      ),
+    ),
+    Text(
+      gamesPlayed,
+      textAlign: center,
+    ),
+    Text(
+      wins,
+      textAlign: center,
+    ),
+    Text(
+      draws,
+      textAlign: center,
+    ),
+    Text(
+      losses,
+      textAlign: center,
+    ),
+    Text(
+      goalDiff,
+      textAlign: center,
+    ),
+    Text(
+      points,
+      textAlign: center,
+    ),
   ]);
 }
