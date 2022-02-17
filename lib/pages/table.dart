@@ -1,7 +1,10 @@
+import 'dart:html';
+
 import 'package:bpl/config/global_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:share_plus/share_plus.dart';
+  
 class BPLTable extends StatefulWidget {
   const BPLTable({Key? key}) : super(key: key);
 
@@ -96,7 +99,19 @@ class _BPLTableState extends State<BPLTable> {
               
               
               IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                final  imageUrl ="https://images.unsplash.com/photo-1644641116859-fe0e0e311824?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
+                
+                final url=Uri.parse(imageUrl);
+                final response=await http.get(url);
+                final bytes   =response.bodyBytes;
+                final temp =await getTemporaryDirectory();
+                final path = '${temp.path}/image.jpg';  
+                File (path).writeAsBytesSync(bytes);
+
+                await Share.share('Baraton League Table');
+                
+                },
                 icon: const FaIcon(
                   FontAwesomeIcons.whatsapp,
                   size: 30,
