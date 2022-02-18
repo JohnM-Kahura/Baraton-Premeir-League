@@ -1,10 +1,12 @@
-import 'dart:html';
+import 'dart:io';
 
 import 'package:bpl/config/global_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share_plus/share_plus.dart';
-  
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+
 class BPLTable extends StatefulWidget {
   const BPLTable({Key? key}) : super(key: key);
 
@@ -48,7 +50,7 @@ class _BPLTableState extends State<BPLTable> {
               columnWidths: Map.from({
                 // TODO: make this more responsive
                 0: FixedColumnWidth(30),
-                1: FixedColumnWidth(110),
+                1: FixedColumnWidth(105),
                 2: FixedColumnWidth(30),
                 3: FixedColumnWidth(30),
                 4: FixedColumnWidth(30),
@@ -84,55 +86,50 @@ class _BPLTableState extends State<BPLTable> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Text(
-                'Share Table with:',
-                style: heading,
-              ),
-            ),
+          SizedBox(
+            height: 20,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              
-              
-              IconButton(
-                onPressed: () async {
-                final  imageUrl ="https://images.unsplash.com/photo-1644641116859-fe0e0e311824?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
+              InkWell(
+                onTap: () async {
+                const   imageUrl ="https://images.unsplash.com/photo-1644641116859-fe0e0e311824?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
                 
                 final url=Uri.parse(imageUrl);
                 final response=await http.get(url);
                 final bytes   =response.bodyBytes;
                 final temp =await getTemporaryDirectory();
-                final path = '${temp.path}/image.jpg';  
+                final path = '${temp.path}/BPL_Table.jpg';  
                 File (path).writeAsBytesSync(bytes);
 
-                await Share.share('Baraton League Table');
+                await Share.shareFiles([path],text: 'Baraton League Table');
                 
                 },
-                icon: const FaIcon(
-                  FontAwesomeIcons.whatsapp,
-                  size: 30,
-                  color: Colors.green,
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    children: [
+                      Text('Share',),
+                      Icon(
+                        Icons.share,
+                        size: 15,
+                      )
+                    ],
+                  ),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const FaIcon(
-                  FontAwesomeIcons.twitter,
-                  size: 30,
-                  color: Colors.blue,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const FaIcon(
-                  FontAwesomeIcons.facebook,
-                  size: 30,
-                  color: Colors.blueAccent,
-                ),
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(10)),
+                child:Row(
+                children: [Text('Table'), Icon(Icons.download,size: 20,)],
+              )
               ),
             ],
           )
@@ -150,7 +147,7 @@ TableRow entry(String pos, String team, String gamesPlayed, String wins,
       textAlign: center,
     ),
     Padding(
-      padding: const EdgeInsets.only(top:5.0,bottom: 5,left: 5),
+      padding: const EdgeInsets.only(top: 5.0, bottom: 5, left: 5),
       child: Text(
         team,
         textAlign: TextAlign.justify,
