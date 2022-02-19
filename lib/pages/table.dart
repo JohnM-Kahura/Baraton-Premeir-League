@@ -1,13 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:bpl/config/global_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 class BPLTable extends StatefulWidget {
@@ -28,15 +26,15 @@ class _BPLTableState extends State<BPLTable> {
         .replaceAll(':', '-');
     final name = 'BPL_Table$time';
     final result = await ImageGallerySaver.saveImage(bytes, name: name);
-    result['filePath'];
-    return result;
+   return result['filePath'];
+   
   }
 
   Future saveAndShare(Uint8List bytes) async {
     final directory = await getApplicationDocumentsDirectory();
-    final image = File('${directory.path}/BPL_Table.png');
+    final image = File('${directory.path}/BPL-Table.jpg');
     image.writeAsBytes(bytes);
-    await Share.shareFiles([image.path]);
+    await Share.shareFiles([image.path],text: 'Baraton premeir league table');
   }
 
   @override
@@ -46,18 +44,19 @@ class _BPLTableState extends State<BPLTable> {
       child: Scaffold(
         backgroundColor: backgroundColor,
         appBar: AppBar(
-            title: const Center(child: Text('League Table')),
-            elevation: 0,
-            actions: [
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    showPreviousTables = !showPreviousTables;
-                  });
-                },
-                icon: const Icon(Icons.event),
-              ),
-            ]),
+          title: const Center(child: Text('League Table')),
+          elevation: 0,
+          actions: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  showPreviousTables = !showPreviousTables;
+                });
+              },
+              icon: const Icon(Icons.event),
+            ),
+          ],
+        ),
         body: Column(
           children: [
             Padding(
