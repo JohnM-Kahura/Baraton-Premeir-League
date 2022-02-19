@@ -112,7 +112,7 @@ class _BPLTableState extends State<BPLTable> {
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(10)),
                   child: Row(
-                    children: [
+                    children: const  [
                       Text('Share',),
                       Icon(
                         Icons.share,
@@ -128,7 +128,7 @@ class _BPLTableState extends State<BPLTable> {
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(10)),
                 child:Row(
-                children: [Text('Table'), Icon(Icons.download,size: 20,)],
+                children: const  [Text('Table'),  Icon(Icons.download,size: 20,)],
               )
               ),
             ],
