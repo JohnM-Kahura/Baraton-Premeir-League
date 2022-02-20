@@ -32,7 +32,7 @@ class _BPLTableState extends State<BPLTable> {
 
   Future saveAndShare(Uint8List bytes) async {
     final directory = await getApplicationDocumentsDirectory();
-    final image = File('${directory.path}/BPL-Table.jpg');
+    final image = File('$directory/BPL-Table.jpg');
     image.writeAsBytes(bytes);
     await Share.shareFiles([image.path],text: 'Baraton premeir league table');
   }
