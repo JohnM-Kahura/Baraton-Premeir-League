@@ -28,6 +28,7 @@ class _BPLTableState extends State<BPLTable> {
     final result = await ImageGallerySaver.saveImage(bytes, name: name);
     bool isSuccess= result['isSuccess'];
     // test async suspension issue
+    print('print saving image status');
     print(isSuccess);
    return result['filePath'];
    
