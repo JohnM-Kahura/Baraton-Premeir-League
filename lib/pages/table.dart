@@ -26,13 +26,16 @@ class _BPLTableState extends State<BPLTable> {
         .replaceAll(':', '-');
     final name = 'BPL_Table$time';
     final result = await ImageGallerySaver.saveImage(bytes, name: name);
+    bool isSuccess= result['isSuccess'];
+    // test async suspension issue
+    print(isSuccess);
    return result['filePath'];
    
   }
 
   Future saveAndShare(Uint8List bytes) async {
     final directory = await getApplicationDocumentsDirectory();
-    final image = File('$directory/BPL-Table.jpg');
+    final image = File('$directory/BPL-Table.png');
     image.writeAsBytes(bytes);
     await Share.shareFiles([image.path],text: 'Baraton premeir league table');
   }
