@@ -1,3 +1,4 @@
+import 'package:bpl/config/global_colors.dart';
 import 'package:flutter/material.dart';
 
 class Stats extends StatefulWidget {
@@ -10,6 +11,10 @@ class Stats extends StatefulWidget {
 class _StatsState extends State<Stats> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+         backgroundColor: backgroundColor,
+         appBar:AppBar(title:Center(child:Text('Stats'))),
+
+    );
   }
 }
