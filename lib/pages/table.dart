@@ -26,18 +26,17 @@ class _BPLTableState extends State<BPLTable> {
         .replaceAll(':', '-');
     final name = 'BPL_Table$time';
     final result = await ImageGallerySaver.saveImage(bytes, name: name);
-    bool isSuccess= result['isSuccess'];
+    bool isSuccess = result['isSuccess'];
     // test async suspension issue
     print(isSuccess);
-   return result['filePath'];
-   
+    return result['filePath'];
   }
 
   Future saveAndShare(Uint8List bytes) async {
     final directory = await getApplicationDocumentsDirectory();
     final image = File('$directory/BPL-Table.png');
     image.writeAsBytes(bytes);
-    await Share.shareFiles([image.path],text: 'Baraton premeir league table');
+    await Share.shareFiles([image.path], text: 'Baraton premeir league table');
   }
 
   @override
@@ -60,73 +59,92 @@ class _BPLTableState extends State<BPLTable> {
             ),
           ],
         ),
-        body: Column(
+        body: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0, bottom: 10),
-              child: Center(
-                child: Text(
-                  '2021/2022.2',
-                  style: heading,
+            if (showPreviousTables)
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ListView(
+                  children:const  [
+                    InkWell(child: Text('2020-2021')),
+                    InkWell(child: Text('2019-2020')),
+                    InkWell(child: Text('2018-20219')),
+                  ],
                 ),
               ),
-            ),
-            const customTable(),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Column(
               children: [
-                InkWell(
-                  onTap: () async {
-                    final image =
-                        await controller.captureFromWidget(const customTable());
-                    saveAndShare(image);
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      children: const [
-                        Text(
-                          'Share',
-                        ),
-                        Icon(
-                          Icons.share,
-                          size: 15,
-                        ),
-                      ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 10),
+                  child: Center(
+                    child: Text(
+                      '2021/2022.2',
+                      style: heading,
                     ),
                   ),
                 ),
-                InkWell(
-                  onTap: () async {
-                    final image =
-                        await controller.captureFromWidget(const customTable());
+                const customTable(),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap: () async {
+                        final image = await controller
+                            .captureFromWidget(const customTable());
+                        saveAndShare(image);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          children: const [
+                            Text(
+                              'Share',
+                            ),
+                            Icon(
+                              Icons.share,
+                              size: 15,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        final image = await controller
+                            .captureFromWidget(const customTable());
 
-                    await saveImage(image);
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      children: const [
-                        Text('Table'),
-                        Icon(
-                          Icons.download,
-                          size: 20,
+                        await saveImage(image);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          children: const [
+                            Text('Table'),
+                            Icon(
+                              Icons.download,
+                              size: 20,
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
+                  ],
+                )
               ],
-            )
+            ),
           ],
         ),
       ),
