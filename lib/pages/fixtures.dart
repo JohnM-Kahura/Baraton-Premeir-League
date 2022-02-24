@@ -1,4 +1,5 @@
 import 'package:bpl/config/global_colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,6 +11,7 @@ class Fixtures extends StatefulWidget {
 }
 
 class _FixturesState extends State<Fixtures> {
+  Stream <QuerySnapshot> fixtures=FirebaseFirestore.instance.collection('fixtures').snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
