@@ -2,9 +2,12 @@ import 'package:bpl/pages/fixtures.dart';
 import 'package:bpl/pages/more.dart';
 import 'package:bpl/pages/stats.dart';
 import 'package:bpl/pages/table.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
