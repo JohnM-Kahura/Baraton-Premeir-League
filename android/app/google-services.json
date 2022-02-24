@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "563185952401",
+    "project_id": "baraton-premier-league",
+    "storage_bucket": "baraton-premier-league.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563185952401:android:871a32ea82b0c5b3de8130",
+        "android_client_info": {
+          "package_name": "com.example.bpl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563185952401-ovfo8ft4t1vq39vp6smhmuqef904b1dl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLjyYlkCeSqD6CVf7U3WeDjuOYKD0bcrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563185952401-ovfo8ft4t1vq39vp6smhmuqef904b1dl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
