@@ -10,6 +10,12 @@ class More extends StatefulWidget {
 class _MoreState extends State<More> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title:const  Center(child: Text('More')),
+        elevation: 0,
+      ),
+      body: Center(child: Text('settings--> account----> set fav team'),),
+    );
   }
 }
