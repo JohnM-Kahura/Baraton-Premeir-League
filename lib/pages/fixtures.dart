@@ -34,7 +34,7 @@ class _FixturesState extends State<Fixtures> {
           }
           final fixtures=snapshot.requireData;
           return ListView.builder(
-          itemCount: 5,
+          itemCount: 1,
           itemBuilder: (BuildContext context, int index) {  
             return Container(
               color: Colors.white,
@@ -50,7 +50,8 @@ class _FixturesState extends State<Fixtures> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Friday 09 January 2022',
+                          
+                            fixtures.docs[index]['date_time'].toDate().toString(),
                             style: GoogleFonts.poppins(
                               letterSpacing: 1.5,
                               fontWeight: FontWeight.w800,

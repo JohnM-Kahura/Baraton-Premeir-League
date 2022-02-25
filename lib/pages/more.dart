@@ -15,7 +15,7 @@ class _MoreState extends State<More> {
         title:const  Center(child: Text('More')),
         elevation: 0,
       ),
-      body: Center(child: Text('settings--> account----> set fav team'),),
+      body: const  Center(child: Text('settings--> account----> set fav team'),),
     );
   }
 }
