@@ -11,46 +11,32 @@ class Fixtures extends StatefulWidget {
 }
 
 class _FixturesState extends State<Fixtures> {
-  Stream <QuerySnapshot> fixtures=FirebaseFirestore.instance.collection('fixtures').snapshots();
+  Stream<QuerySnapshot> fixtures =
+      FirebaseFirestore.instance.collection('fixtures').snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        leading: SizedBox(
+          height: 50,
+          child: Image.asset('assets/baraton_logo.png'),
+        ),
+        title: Text('Premier League',style: heading,),
+      ),
       backgroundColor: backgroundColor,
-      body: ListView.builder(
+      body: StreamBuilder<QuerySnapshot>(stream: fixtures,builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot){
+        if(snapshot.hasError){
+          return const  Text('Something went wrong');
+        }
+          if(snapshot.connectionState==ConnectionState.waiting){
+            return const  Center(child: CircularProgressIndicator() ,);
+          }
+          final fixtures=snapshot.requireData;
+          return ListView.builder(
           itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            if (index == 0) {
-              return Container(
-                color: Colors.yellow,
-                child: Row(
-                  children: [
-                    SizedBox(
-                        height: 80,
-                        child: Image.asset('assets/baraton_logo.png')),
-                    Column(
-                      children: [
-                        Text('Premier', style: heading),
-                        Text('League', style: heading),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            }
-            if (index == 1) {
-              return Container(
-                padding: const EdgeInsets.all(10),
-                color: Colors.white,
-                child: const Center(
-                  child: Text(
-                    'Fixtures',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              );
-            }
+          itemBuilder: (BuildContext context, int index) {  
             return Container(
-              // height: 300,
               color: Colors.white,
               margin: const EdgeInsets.only(
                 top: 5,
@@ -92,7 +78,8 @@ class _FixturesState extends State<Fixtures> {
                 ],
               ),
             );
-          }),
+          });
+      },),
     );
   }
 
